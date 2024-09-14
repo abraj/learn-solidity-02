@@ -1,66 +1,53 @@
-## Foundry
-
-**Foundry is a blazing fast, portable and modular toolkit for Ethereum application development written in Rust.**
-
-Foundry consists of:
-
--   **Forge**: Ethereum testing framework (like Truffle, Hardhat and DappTools).
--   **Cast**: Swiss army knife for interacting with EVM smart contracts, sending transactions and getting chain data.
--   **Anvil**: Local Ethereum node, akin to Ganache, Hardhat Network.
--   **Chisel**: Fast, utilitarian, and verbose solidity REPL.
-
-## Documentation
-
-https://book.getfoundry.sh/
-
-## Usage
-
-### Build
+### Check wallet balance
 
 ```shell
-$ forge build
+cast balance 0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266
 ```
 
-### Test
+### Install chainlink/contracts
 
 ```shell
-$ forge test
+forge install smartcontractkit/chainlink-brownie-contracts@0.6.1 --no-commit
 ```
 
-### Format
+### Install foundry-devops
 
 ```shell
-$ forge fmt
+forge install https://github.com/Cyfrin/foundry-devops --no-commit
 ```
 
-### Gas Snapshots
+### Run test suite
 
 ```shell
-$ forge snapshot
+forge test
+forge test -vv
+forge test --mt test_PriceFeedVersionIsCorrect -vvv
+forge test --mt test_PriceFeedVersionIsCorrect --fork-url $RPC_URL
+
+forge test --fork-url $RPC_URL
+forge test --fork-url $SEPOLIA_RPC_URL
+forge test --fork-url $MAINNET_RPC_URL
 ```
 
-### Anvil
+### Check test suite coverage
 
 ```shell
-$ anvil
+forge coverage
+forge coverage --fork-url $RPC_URL
 ```
 
-### Deploy
+### Check gas costs
 
 ```shell
-$ forge script script/Counter.s.sol:CounterScript --rpc-url <your_rpc_url> --private-key <your_private_key>
+forge snapshot
+forge snapshot --mt test_WithdrawWithManyFunders
 ```
 
-### Cast
+### Zksync Devops
 
-```shell
-$ cast <subcommand>
-```
+https://github.com/Cyfrin/foundry-devops
 
-### Help
+### TODO: Gas cost exploration
 
-```shell
-$ forge --help
-$ anvil --help
-$ cast --help
-```
+https://github.com/Cyfrin/foundry-fund-me-cu/blob/main/script/DeployStorageFun.s.sol
+https://github.com/Cyfrin/foundry-fund-me-cu/blob/main/src/exampleContracts/FunWithStorage.sol
