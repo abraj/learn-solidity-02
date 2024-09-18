@@ -16,6 +16,5 @@ docs/
 .env
 
 .DS_Store
-lib/
 broadcast/
 zkout/
