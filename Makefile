@@ -1,5 +1,6 @@
 # -include .env
-include .env
+# include .env
+include /Users/abraj/dev/archive/learn-solidity/env/.env
 
 build:; forge clean && forge build
 
